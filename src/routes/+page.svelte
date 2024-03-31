@@ -73,10 +73,10 @@
 
 <main>
   <div class="calculator">
-    <div class="results">
+    <section class="results">
       {display}
-    </div>
-    <div class="digits">
+    </section>
+    <section class="digits">
       <div class="numbers">
         <button class="btn btn-xlg" on:click={handleClear}> C </button>
         {#each numbers as number (number)}
@@ -100,7 +100,7 @@
           </button>
         {/each}
       </div>
-    </div>
+    </section>
   </div>
 </main>
 
