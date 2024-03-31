@@ -1,3 +1,76 @@
+<script lang="ts">
+  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
+  const operations = ["/", "x", "-", "+", "="];
+
+  let selectedOperation = "";
+  let display = "";
+  let firstNumber = "";
+  let secondNumber = "";
+  let isDisplayingResults = false;
+
+  const handleOperationClick = (operation: string) => {
+    if (!firstNumber) return;
+    if (operation === "=") {
+      if (!secondNumber) return;
+      const firstNum = parseInt(firstNumber);
+      const secondNum = parseInt(secondNumber);
+
+      let results = "";
+
+      switch (selectedOperation) {
+        case "/":
+          results = (firstNum / secondNum).toFixed(2);
+          break;
+        case "x":
+          results = (firstNum * secondNum).toFixed(2);
+          break;
+        case "+":
+          results = (firstNum + secondNum).toFixed(2);
+          break;
+        case "-":
+          results = (firstNum - secondNum).toFixed(2);
+          break;
+      }
+
+      display = results;
+      isDisplayingResults = true;
+    }
+    selectedOperation = operation;
+  };
+
+  const handleClear = () => {
+    firstNumber = "";
+    secondNumber = "";
+    selectedOperation = "";
+    display = "";
+    isDisplayingResults = false;
+  };
+
+  const handleNumberClick = (number: string) => {
+    if (isDisplayingResults) {
+      handleClear();
+    }
+    if (display === "" && number === "0") return;
+    if (number === "." && display.includes(".")) return;
+
+    if (!selectedOperation) {
+      if (display === "" && number === ".") {
+        firstNumber = "0.";
+        return (display = firstNumber);
+      }
+      firstNumber = `${firstNumber}${number}`;
+      return (display = firstNumber);
+    } else {
+      if (display === "" && number === ".") {
+        secondNumber = "0.";
+        return (display = secondNumber);
+      }
+      secondNumber = `${secondNumber}${number}`;
+      return (display = secondNumber);
+    }
+  };
+</script>
+
 <main>
   <div class="calculator">
     <div class="results"></div>
