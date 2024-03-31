@@ -73,10 +73,33 @@
 
 <main>
   <div class="calculator">
-    <div class="results"></div>
+    <div class="results">
+      {display}
+    </div>
     <div class="digits">
-      <div class="numbers"></div>
-      <div class="operations"></div>
+      <div class="numbers">
+        <button class="btn btn-xlg" on:click={handleClear}> C </button>
+        {#each numbers as number (number)}
+          <button
+            class={`btn ${number === "0" ? "btn-lg" : null}`}
+            on:click={() => handleNumberClick(number)}
+          >
+            {number}
+          </button>
+        {/each}
+      </div>
+      <div class="operations">
+        {#each operations as operation (operation)}
+          <button
+            class={`btn ${
+              operation === selectedOperation ? "btn-silver" : "btn-red"
+            }`}
+            on:click={() => handleOperationClick(operation)}
+          >
+            {operation}
+          </button>
+        {/each}
+      </div>
     </div>
   </div>
 </main>
@@ -88,7 +111,7 @@
     box-sizing: border-box;
   }
   main {
-    background-color: rgb(78, 78, 78);
+    background-color: rgb(114, 114, 114);
     height: 100vh;
     display: flex;
     align-items: center;
@@ -119,5 +142,28 @@
     display: flex;
     flex-wrap: wrap;
     width: 200px;
+  }
+  .btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    background-color: rgb(114, 113, 113);
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin: 5px;
+    border: none;
+  }
+  .btn-lg {
+    width: 110px;
+  }
+  .btn-xlg {
+    width: 170px;
+  }
+  .btn-red {
+    background-color: rgb(167, 58, 58);
+  }
+  .btn-silver {
+    background-color: silver;
   }
 </style>
