@@ -1,2 +1,9 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<main>
+  <div class="calculator">
+    <div class="results"></div>
+    <div class="digits">
+      <div class="numbers"></div>
+      <div class="operations"></div>
+    </div>
+  </div>
+</main>
